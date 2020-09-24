@@ -2,10 +2,7 @@
 {% load static %}
 {% block styles %}
 <style>
-    .jumbotron{
-     background-color: skyblue;
-     
-    }
+   
     .content{
       widows: 100%;;
     }
@@ -27,10 +24,8 @@
       <div class="row d-flex align-items-stretch">
         {% for product in products %}
           {% for item in product.productimage_set.all %}
-            {% if item.featured %}
         <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch">
             <div class="card">
-             
               <img class="card-img-top" src="{{ item.image.url }}" alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">{{ product.description }}</h5>
@@ -39,10 +34,8 @@
               <div class="card-footer">
                 <small class="text-muted">{{ product.updated }}</small>
               </div>
-              
           </div>
         </div>
-            {% endif %}
           {% endfor %}
         {% endfor %}
       </div>
