@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, Http404
 from .models import Product, ProductImage
 
 # Create your views here.
@@ -13,3 +13,12 @@ def all_products(request):
     return render(request, 'products/all_product.html',{
         'products': products
     })
+
+def single(request, slug):
+    try:
+        product = Product.objects.get(slug = slug)
+        return render(request, 'products/single.html',{
+            'product': product
+    })
+    except:
+        raise Http404
