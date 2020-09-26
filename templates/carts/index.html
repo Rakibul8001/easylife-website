@@ -1,0 +1,50 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block styles %}
+<style>
+    .jumbotron{
+      width: 100%;
+      height: 400px;
+      background: url("/static/img/fashion-shop.jpg") 50% no-repeat ;
+      background-size: 100% 100%;
+    }
+    .content{
+      widows: 100%;;
+    }
+    .card{
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .card-img-top {
+      height: 200px;
+    }
+    a.pull-right{
+      float: right;
+    }
+   
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="col-sm-8">
+    <table class="table">
+        <thead>
+            <th>Item</th>
+            <th>Price</th>
+        </thead>
+        {% for item in carts.products.all %}
+        <tr>
+            <td>{{ item }}</td>
+            <td>{{ item.price }}</td>
+        </tr>
+        {% endfor %}
+        <tfoot>
+            <tr>
+                <td></td>
+                <td>Total: {{ carts.total }}</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+{% endblock %}
