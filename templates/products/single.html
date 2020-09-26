@@ -1,6 +1,64 @@
 {% extends 'base/base.html' %}
+{% load static %}
+{% block styles %}
+<style>
+    .jumbotron{
+      width: 100%;
+      height: 400px;
+      background: url("/static/img/fashion-shop.jpg") 50% no-repeat ;
+      background-size: 100% 100%;
+    }
+    .content{
+      widows: 100%;;
+    }
+    .card{
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .card-img-top {
+      height: 200px;
+    }
+    a.pull-right{
+      float: right;
+    }
+   
+</style>
+{% endblock %}
 
 {% block content %}
-    {{ product.title }}--{{ product.slug }}-- {{ product.id }}
+
+<div class="row">
+  <div class="col-sm-4">
+    {% for img in images %}
+    {% if img.featured %}
+    <div class="col-xs-12 col-md-6">
+        <img class="img-thumbnail" src="{{ img.image.url }}" alt="single image">
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% for img in images %}
+    {% if not img.featured %}
+    <div class="col-xs-6 col-md-3">
+        <a href="#">
+            <img src="{{ img.image.url }}" alt="thumbnail-img" class="img-thumbnail">
+        </a>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+  <div class="col-sm-8">
+    <div class="page-header">
+      <h1>{{ product.title }} <a href="#" class="pull-right">Add To Cart</a></h1>
+    </div>
+      <hr>
+      price: {{ product.price }}.Tk <br>
+      Shpping: Free with tk 50+ purchase.
+      <hr/>
+      {{ product.description | linebreaks }}
     
+  </div>
+</div>
+
+
 {% endblock %}
+

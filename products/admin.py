@@ -4,7 +4,7 @@ from .models import Product, ProductImage
 # Register your models here.
 class ProductAdmin(admin.ModelAdmin):
     date_hierarchy = 'timestamp'
-    list_display = ['__str__','title','description','price','slug','updated','active']
+    list_display = ['__str__','title','price','slug','updated','active']
     search_fields = ['title','description','price']
     list_editable = ['price','active']
     list_filter = ['price', 'active']
