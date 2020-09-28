@@ -7,15 +7,18 @@
     {% for img in images %}
     {% if img.featured %}
     <div class="col-xs-12 col-md-6">
-        <img class="img-thumbnail" src="{{ img.image.url }}" alt="single image">
+        <img  class="img-thumbnail" src="{{ img.image.url }}" alt="single image">
     </div>
     {% endif %}
     {% endfor %}
+    <br>
+    <br>
+    <hr>
     {% for img in images %}
     {% if not img.featured %}
     <div class="col-xs-6 col-md-3">
         <a href="#">
-            <img src="{{ img.image.url }}" alt="thumbnail-img" class="img-thumbnail">
+            <img class="img-thumbnail" src="{{ img.image.url }}" alt="thumbnail-img" >
         </a>
     </div>
     {% endif %}
