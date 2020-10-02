@@ -12,18 +12,18 @@
         {% for product in products %}
           {% for item in product.productimage_set.all %}
             {% if item.featured %}
-        <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch">
-          <div class="card">
-              <img class="card-img-top" src="{{ item.image.url }}" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title"><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></h5>
-                <p class="card-text">{{ product.price }}</p>
+              <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch">
+                <div class="card">
+                    <img class="card-img-top" src="{{ item.image.url }}" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title"><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></h5>
+                      <p class="card-text">{{ product.price }}</p>
+                    </div>
+                    <div class="card-footer">
+                      <small class="text-muted">{{ product.updated }}</small>
+                    </div>
+                </div>
               </div>
-              <div class="card-footer">
-                <small class="text-muted">{{ product.updated }}</small>
-              </div>
-          </div>
-        </div>
             {% endif %}
           {% endfor %}
         {% endfor %}
