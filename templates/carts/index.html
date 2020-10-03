@@ -1,4 +1,4 @@
-{% extends 'base/base.html' %}
+{% extends "base/base.html" %}
 
 {% block content %}
 <div class="col-sm-8 offset-sm-2"></div>
@@ -9,13 +9,15 @@
         <thead>
             <th>Item</th>
             <th>Price</th>
+            <th>Qty</th>
             <th></th>
         </thead>
-        {% for item in carts.products.all %}
+        {% for item in carts.items.all %}
         <tr>
-            <td>{{ item }}</td>
-            <td>{{ item.price }}</td>
-            <td><a href='{% url "update" item.slug %}'>remove</a></td>
+            <td>{{ item.product }}</td>
+            <td>{{ item.product.price }}</td>
+            <td>{{ item.quantity}}</td>
+            <td><a href='{% url "update" item.product.slug %}'>remove</a></td>
         </tr>
         {% endfor %}
         <tfoot>

@@ -31,7 +31,6 @@ def all_products(request):
         'products': products
     })
 
-
 def single(request, slug):
     try:
         product = Product.objects.get(slug=slug)
