@@ -17,10 +17,10 @@
                     <img class="card-img-top" src="{{ item.image.url }}" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title"><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></h5>
-                      <p class="card-text">{{ product.price }}</p>
+                      <p class="card-text">Price:{{ product.price }}</p>
                     </div>
                     <div class="card-footer">
-                      <small class="text-muted">{{ product.updated }}</small>
+                      <small class="text-muted">Last-update: {{ product.updated }}</small>
                     </div>
                 </div>
               </div>
