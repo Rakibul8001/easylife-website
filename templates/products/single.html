@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-sm-4">
+    {% for img in images %}
+    {% if img.featured %}
+    <div class="col-xs-12 col-md-6">
+        <img  class="img-thumbnail" src="{{ img.image.url }}" alt="single image">
+    </div>
+    {% endif %}
+    {% endfor %}
+    <br>
+    <br>
+    <hr>
+    {% for img in images %}
+    {% if not img.featured %}
+    <div class="col-xs-6 col-md-3">
+        <a href="#">
+            <img class="img-thumbnail" src="{{ img.image.url }}" alt="thumbnail-img" >
+        </a>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+  <div class="col-sm-8">
+    <div class="page-header">
+      <h1>{{ product.title }} <a href='{% url "update" product.slug %}' class="pull-right">Add To Cart</a></h1>
+    </div>
+      <hr>
+      price: {{ product.price }}.Tk <br>
+      Shpping: Free with tk 50+ purchase.
+      <hr/>
+      {{ product.description | linebreaks }}
+    
+  </div>
+</div>
+
+
+{% endblock %}
+

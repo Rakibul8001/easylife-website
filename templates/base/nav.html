@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+    <a class="navbar-brand" href="#"><h3><i>Easy Life</i></h3></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'all_product' %}">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'cart' %}">Cart <span class="badge badge-secondary">
+            {% if not request.session.items_total %} 0 {% else %}{{ request.session.items_total }} {% endif %}</span></a>
+        </li>
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Accounts</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            {% if not request.user.is_authenticated %}
+            <a class="dropdown-item" href="#">Login</a><hr>
+            <a class="dropdown-item" href="#">Register</a><hr>
+            {% else %}
+            <a class="dropdown-item" href="#">Logout</a>
+            {% endif %}
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}">
+        <input class="form-control mr-sm-2" name="k" type="text" placeholder="Search Product Title" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>

@@ -1,0 +1,50 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title> Jumbotron Template for Bootstrap</title>
+
+     {% include 'base/styles.html' %}
+    
+  </head>
+
+  <body>
+
+    {% include 'base/nav.html' %}
+
+    <main role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <i style="color: white; font-size: 25px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. <br/>Pariatur veritatis veniam nulla? </i>
+        </div>
+      </div>
+
+      <div class="container">
+        <!-- Example row of columns -->
+        {% block content %}
+
+        {% endblock %}
+
+        <hr>
+
+      </div>
+
+    </main>
+    
+    <footer class="container">
+      <p>&copy; Company 2017-2018</p>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    {% include 'base/script.html' %}
+  </body>
+</html>
