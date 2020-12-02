@@ -10,15 +10,23 @@
             <th>Item</th>
             <th>Price</th>
             <th>Qty</th>
-            <th>Notes</th>
             <th></th>
         </thead>
         {% for item in cart.cartitem_set.all %}
         <tr>
-            <td>{{ item.product }}</td>
+            <td>
+                {{ item.product }}
+                {% if item.variations.all %}
+                    <ul>
+                        {% for subitem in item.variations.all %}
+                            <li>{{subitem.category|capfirst}} : {{ subitem.title|capfirst }}</li>
+                        {% endfor %}   
+                    </ul>
+                {% endif %}    
+            </td>
             <td>{{ item.product.price }}</td>
             <td>{{ item.quantity}}</td>
-            <td>{{ item.notes}}</td>
+            <td></td>
             <td><a href='{% url "update" item.product.slug %}?qty=0'>remove</a></td>
         </tr>
         {% endfor %}
@@ -26,7 +34,7 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td>Total : {{ carts.total }}</td>
+                <td>Total : {{ cart.total }}</td>
             </tr>
         </tfoot>
     </table>
