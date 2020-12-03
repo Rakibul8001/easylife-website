@@ -14,10 +14,30 @@ def cart(request):
         the_id = None
     if the_id:
         cart = Cart.objects.get(id=the_id)
+        new_total = 0.00
+        for item in cart.cartitem_set.all():
+            line_total = float(item.product.price) * item.quantity
+            new_total += line_total
+        request.session['items_total'] = cart.cartitem_set.count()
+        cart.total = new_total
+        cart.save()
         return render(request, 'carts/index.html', {'cart': cart})
     else:
         empty_message = 'Your cart is empty, please keep shopping!'
         return render(request, 'carts/index.html', {'empty': True, 'empty_message': empty_message, })
+
+
+def remove_from_cart(request, id):
+    try:
+        the_id = request.session['cart_id']
+        cart = Cart.objects.get(id=the_id)
+    except:
+        return HttpResponseRedirect(reverse('cart'))
+    cartitem = CartItem.objects.get(id=id)
+    cartitem.cart = None
+    cartitem.save()
+    # success message
+    return HttpResponseRedirect(reverse('cart'))
 
 
 def add_to_cart(request, slug):
@@ -30,7 +50,6 @@ def add_to_cart(request, slug):
         new_cart.save()
         request.session['cart_id'] = new_cart.id
         the_id = new_cart.id
-
     cart = Cart.objects.get(id=the_id)
     try:
         product = Product.objects.get(slug=slug)
@@ -38,7 +57,6 @@ def add_to_cart(request, slug):
         pass
     except:
         pass
-
     product_var = []
     if request.method == 'POST':
         qty = request.POST['qty']
@@ -51,23 +69,13 @@ def add_to_cart(request, slug):
                 product_var.append(v)
             except:
                 pass
-
         cart_item = CartItem.objects.create(
             cart=cart, product=product)
-
         if len(product_var) > 0:
             cart_item.variations.add(*product_var)
         cart_item.quantity = qty
         cart_item.save()
-
-        new_total = 0.00
-        for item in cart.cartitem_set.all():
-            line_total = float(item.product.price) * item.quantity
-            new_total += line_total
-
-        request.session['items_total'] = cart.cartitem_set.count()
-        cart.total = new_total
-        cart.save()
+        # success message
         return HttpResponseRedirect(reverse('cart'))
-
+    # error message
     return HttpResponseRedirect(reverse('cart'))
