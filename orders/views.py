@@ -3,8 +3,14 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
 from carts.models import Cart
 from .models import Order
+from .utils import id_generator
 
 # Create your views here.
+
+
+def orders(request):
+    context = {}
+    return render(request, 'orders/user.html', context)
 
 
 def checkout(request):
@@ -17,10 +23,12 @@ def checkout(request):
 
     new_order, created = Order.objects.get_or_create(cart=cart)
     if created:
-        new_order.order_id = str(time.time())
+        new_order.order_id = id_generator()  # str(time.time())
         new_order.save()
+    new_order.user = request.user
+    new_order.save()
     if new_order.status == "Finished":
-        cart.delete()
+        # cart.delete()
         del request.session['cart_id']
         del request.session['items_total']
     context = {}
