@@ -1,10 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block content %}
-<h1>Search for:{{ query }}</h1>
-{% for product in products %}
-{{ product }}
-{% endfor %}
 
 <table class="table">
     <thead>
@@ -19,14 +15,14 @@
                     {% for item in product.productimage_set.all %}
                         {% if item.featured %}
                         <a href="{{ product.get_absolute_url }}">
-                            <div style="height: 100%; width:100%; background-image: url('{{ item.image.url }}'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+                            <div style="height: 100%; width:100%; background-image: url('{{ item.image.url }}');  background-size: cover; background-position: center;">
 
                             </div>
                         </a>
                         {% endif %}
                     {% endfor %}
                 {% else %}
-                <div style="height: 100%; width:100%; background-image: url('/static/img/fashion-shop.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;">
+                <div class="background-thumb" style="height: 100%; width:100%; background-repeat: no-repeat; background-size: cover; background-position: center;">
 
                 </div>
                 {% endif %}

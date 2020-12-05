@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %}
-
+{% load static %}
 {% block content %}
 <div class="page-header">
   <h1>All Products</h1>
@@ -9,6 +9,7 @@
     <div class="card-body pb-0">
       <div class="row d-flex align-items-stretch">
         {% for product in products %}
+        {% if product.productimage_set.all %}
         {% for item in product.productimage_set.all %}
         <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch">
           <div class="card">
@@ -27,6 +28,24 @@
           </div>
         </div>
         {% endfor %}
+        {% else %}
+        <div class="col-12 col-sm-6 col-md-3 d-flex align-items-stretch">
+          <div class="card">
+            <img class="card-img-top" src="{% static 'img/empty.png' %}" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title"><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></h5>
+              <p class="card-text">{{ product.price }}</p>
+            </div>
+            <div>
+              <input type="button" value="View" class="btn btn-outline-secondary  mb-2">
+              <input type="button" value="Add" class="btn btn-outline-secondary  mb-2 float-right">
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">{{ product.updated }}</small>
+            </div>
+          </div>
+        </div>
+        {% endif %}
         {% endfor %}
       </div>
     </div>
