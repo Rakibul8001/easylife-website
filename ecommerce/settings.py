@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'products',
     'carts',
     'orders',
+    'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -131,3 +132,7 @@ STATIC_ROOT = BASE_DIR / 'assets'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 MEDIA_URL = '/media/'
+
+
+STRIPE_SECRET_KEY = "sk_test_51HSw90GdWiMduZd0ZL446bCQyGC7JJ1YMzESTbXBCN9LQRoXwP4iEO288vXN9sTpcd7uvAuXwWBCkthiWVXHXr6Z00KE1GLJcd"
+STRIPE_PUBLISHABLE_KEY = "pk_test_51HSw90GdWiMduZd0LVQ5MEfV1JVKtrYg3W7CQtP723OJpxBnEgMLVLrXDS53cx0FdpjaNdezDpnvUCrstB9S5hQj00uDhVr4q5"
