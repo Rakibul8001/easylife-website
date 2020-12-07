@@ -25,7 +25,7 @@
           <div class="dropdown-menu" aria-labelledby="dropdown01">
             {% if not request.user.is_authenticated %}
             <a class="dropdown-item" href="{% url 'auth_login' %}">Login</a><hr>
-            <a class="dropdown-item" href="#">Register</a><hr>
+            <a class="dropdown-item" href="{% url 'auth_register' %}">Register</a><hr>
             {% else %}
             <a class="dropdown-item" href="{% url 'auth_logout' %}">Logout</a>
             {% endif %}
