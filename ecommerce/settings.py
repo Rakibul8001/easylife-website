@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,7 +28,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-DEFAULT_FROM_EMAIL = "defaultemail@gmail.com"
+# sending email
+DEFAULT_FROM_EMAIL = "Your are invited <mdrashedulhossain8@gmail.com>"
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mdrashedulhossain8@gmail.com'
+EMAIL_HOST_PASSWORD = 'rashedul26'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 
 # Application definition
 

@@ -1,8 +1,12 @@
+import random
 import stripe
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.signals import user_logged_in
 from django.db.models.signals import post_save
+# import random
+# import hashlib
+
 
 from .models import UserStripe, EmailConfirmed
 
@@ -48,3 +52,5 @@ def user_created(sender, instance, created, *args, **kwargs):
 
 
 post_save.connect(user_created, sender=User)
+
+#short_hash = hashlib.sha1(str(random.random())).hexdigest()

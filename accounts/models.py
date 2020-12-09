@@ -24,7 +24,7 @@ class EmailConfirmed(models.Model):
         return str(self.confirmed)
 
     # send email and render string
-    def active_user_email(self):
+    def activate_user_email(self):
         activation_url = "http://localhost:8000/accounts/activate/%s" % (
             self.activation_key)
         context = {
