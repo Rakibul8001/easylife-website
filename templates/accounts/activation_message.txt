@@ -1,0 +1,7 @@
+Hello {{ user }}
+Please, Activate your account here!
+
+{{ activation_url }}
+
+Thank you!!
+-Md Rakibul Islam
