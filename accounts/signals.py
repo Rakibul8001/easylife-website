@@ -4,8 +4,8 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.signals import user_logged_in
 from django.db.models.signals import post_save
-# import random
-# import hashlib
+import random
+import hashlib
 
 
 from .models import UserStripe, EmailConfirmed
@@ -46,11 +46,17 @@ def user_created(sender, instance, created, *args, **kwargs):
     user = instance
     if created:
         get_create_stripe(user)
-        email_confirmed, email_is_created = EmailConfirmed(user=user)
+        email_confirmed, email_is_created = EmailConfirmed.objects.get_or_create(
+            user=user)
         if email_is_created:
-            print("hellooo")
+            short_hash = hashlib.sha1(
+                str(random.random()).encode()).hexdigest()[:5]
+            base, domain = str(user.email).split('@')
+            activation_key = hashlib.sha1(
+                (short_hash+base).encode()).hexdigest()
+            email_confirmed.activation_key = activation_key
+            email_confirmed.save()
+            email_confirmed.activate_user_email()
 
 
 post_save.connect(user_created, sender=User)
-
-#short_hash = hashlib.sha1(str(random.random())).hexdigest()
