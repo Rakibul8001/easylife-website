@@ -37,6 +37,8 @@ EMAIL_HOST_PASSWORD = 'rashedul26'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
+SITE_URL = "http://cfestore.com"
+
 
 # Application definition
 
