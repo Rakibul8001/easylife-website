@@ -1,8 +1,10 @@
 from django.shortcuts import render, Http404
 from .models import Product, ProductImage
-
+from marketing.models import MarketingMessage
 
 # Create your views here.
+
+
 def search(request):
     try:
         k = request.GET.get('k')
@@ -20,8 +22,10 @@ def search(request):
 
 def index(request):
     products = Product.objects.all()
+    marketing_message = MarketingMessage.objects.all()[0]
     return render(request, 'products/index.html', {
-        'products': products
+        'products': products,
+        'marketing_message': marketing_message
     })
 
 
@@ -30,6 +34,7 @@ def all_products(request):
     return render(request, 'products/all_product.html', {
         'products': products
     })
+
 
 def single(request, slug):
     try:

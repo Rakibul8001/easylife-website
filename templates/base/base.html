@@ -16,14 +16,16 @@
 
 <body>
   <!-- Top alert message -->
+  {% if marketing_message %}
   <div class="alert alert-primary alert-dismissible top-alert-message" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
     <div class="container">
-      <h4>Hello Dear Message</h4>
+      <h4>{{ marketing_message.message|safe }}</h4>
     </div>
   </div>
+  {% endif %}
 
   {% include 'base/nav.html' %}
 
